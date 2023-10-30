@@ -1,4 +1,4 @@
-package com.betweentech.infrastructure.res;
+package com.betweentech.infrastructure.config.res;
 
 
 import org.springframework.beans.factory.annotation.Value;

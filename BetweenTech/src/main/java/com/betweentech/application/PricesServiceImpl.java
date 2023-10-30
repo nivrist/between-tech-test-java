@@ -5,6 +5,7 @@ import com.betweentech.application.projections.PricesProjection;
 import com.betweentech.domain.PricesRepository;
 import com.betweentech.domain.dto.ApiResponse;
 import com.betweentech.domain.dto.PricingRequest;
+import com.betweentech.infrastructure.config.MessageProvider;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
@@ -15,9 +16,11 @@ import java.util.List;
 @Slf4j
 public class PricesServiceImpl implements PricesService {
     private final PricesRepository pricesRepository;
+    private final MessageProvider<String> messageProvider;
 
-    public PricesServiceImpl(PricesRepository pricesRepository) {
+    public PricesServiceImpl(PricesRepository pricesRepository, MessageProvider<String> messageProvider) {
         this.pricesRepository = pricesRepository;
+        this.messageProvider = messageProvider;
     }
 
     @Override
@@ -25,12 +28,12 @@ public class PricesServiceImpl implements PricesService {
         List<PricesProjection> prices = pricesRepository.findPricesByBrandIdStartDateProductId(request.getBrandId(), request.getApplicationDate(), request.getProductId());
         // Comprueba si se encontraron precios
         if (prices.isEmpty()) {
-            throw new CustomException("No se encontraron precios para la solicitud dada");
+            throw new CustomException(messageProvider.getMessage("prices.message.list.empty"));
         }
         // Si se encontraron precios, crea una respuesta exitosa
         return ResponseEntity.ok(ApiResponse.builder()
                 .data(prices)
-                .message("Datos obtenidos con éxito")
+                .message(messageProvider.getMessage("prices.message.list.ok"))
                 .success(true)
                 .build());
     }

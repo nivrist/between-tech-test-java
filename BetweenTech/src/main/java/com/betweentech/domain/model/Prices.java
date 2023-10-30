@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 import java.util.Date;
 @Getter
 @Setter
-@Table(name ="Prices")
+@Table
 @Entity
 public class Prices {
     @Id

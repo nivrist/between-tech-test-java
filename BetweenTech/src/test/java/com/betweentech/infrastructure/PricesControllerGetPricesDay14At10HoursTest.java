@@ -9,6 +9,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.context.annotation.ComponentScan;
 import org.springframework.http.ResponseEntity;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -22,6 +23,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 @RunWith(SpringRunner.class)
 @WebMvcTest(PricesController.class)
+@ComponentScan(basePackages = "com.betweentech.infrastructure.config")
 public class PricesControllerGetPricesDay14At10HoursTest {
 
     @Autowired
@@ -45,7 +47,7 @@ public class PricesControllerGetPricesDay14At10HoursTest {
         ApiResponse<Object> apiResponse = ApiResponse.builder()
                 .data(mockPrices)
                 .success(true)
-                .message("Datos obtenidos con éxito")
+                .message("Datos obtenidos con exito")
                 .build();
 
         // Crea un ResponseEntity con la instancia de ApiResponse
