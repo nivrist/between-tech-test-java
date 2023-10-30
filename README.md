@@ -38,6 +38,7 @@ Este proyecto es una aplicación Java basada en la arquitectura hexagonal, desar
 Asegúrate de tener instalados los siguientes componentes antes de ejecutar el proyecto:
 
 - Java 1.8
+- Apache Maven 3.8.7
 - Docker (opcional para ejecutar en contenedor)
 
 ## Instalación
